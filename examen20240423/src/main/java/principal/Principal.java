@@ -27,7 +27,7 @@ public class Principal extends JFrame{
 	
 
 	public Principal() {
-		super("Gestion de centro Educativo");
+		super("Gestion de Bankonter");
 		this.setBounds(0,0,800,600);
 
 		

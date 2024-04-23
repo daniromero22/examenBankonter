@@ -1,5 +1,8 @@
 package principal.entities;
 
+import java.util.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,26 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "curso")
-public class Curso extends Entidad{
+@Table(name ="tipocontrato")
+public class TipoContrato extends Entidad{
+
 	@Id
-	@GeneratedValue (strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String descripcion;
-	
-	
-	
-	
-	
-	
-	@Override
-	public String toString() {
-		return descripcion;
-	}
-
-	public Curso() {
-		super();
-	}
 	
 	public int getId() {
 		return id;
@@ -40,6 +30,13 @@ public class Curso extends Entidad{
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+	
+	@Override
+	public String toString() {
+		return descripcion;
+	}
+	
+	
 	
 	
 }

@@ -2,7 +2,7 @@ package principal.controllers;
 
 import java.util.List;
 
-import principal.entities.Estudiante;
+import principal.entities.Contrato;
 
 public class DatosDeTabla {
 
@@ -10,27 +10,22 @@ public class DatosDeTabla {
  	
 	
 	public static String[] getTitulosColumnas() {
-		return new String[] {"Id", "Nombre", "Apellido 1", "Apellido 2", "DNI", "Direccion", "Email", "Telefono", "Sexo", "Imagen", "ColorFavorito"};
+		return new String[] {"Id", "Descripcion", "FechaFirma", "Saldo", "Limite", "IdUsuario"};
 	}
 	
 	
 	public static Object[][] getDatosDeTabla() {
 		if (datos == null) {
-			List<Estudiante> estudiantes = (List<Estudiante>) ControladorEstudiantes.getInstance().findAll();
-			datos = new Object[estudiantes.size()][11];
-			for (int i = 0; i < estudiantes.size(); i++) {
-				Estudiante e = estudiantes.get(i);
+			List<Contrato> contratos = (List<Contrato>) ControladorContrato.getInstance().findAll();
+			datos = new Object[contratos.size()][11];
+			for (int i = 0; i < contratos.size(); i++) {
+				Contrato e = contratos.get(i);
 				datos[i][0] = e.getId();
-				datos[i][1] = e.getNombre();
-				datos[i][2] = e.getApellido_1();
-				datos[i][3] = e.getApellido_2();
-				datos[i][4] = e.getDni();
-				datos[i][5] = e.getDireccion();
-				datos[i][6] = e.getMail();
-				datos[i][7] = e.getTelefono();
-				datos[i][8] = e.getIdSexo();
-				datos[i][9] = e.getImagen();
-				datos[i][10] = e.getColorFavorito();
+				datos[i][1] = e.getDescripcion();
+				datos[i][2] = e.getFechaFirma();
+				datos[i][3] = e.getSaldo();
+				datos[i][4] = e.getLimite();
+				datos[i][5] = e.getIdUsuario();
 			}
 		}
 		

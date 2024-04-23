@@ -12,16 +12,16 @@ import java.util.ResourceBundle.Control;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import principal.controllers.ControladorEstudiantes;
+import principal.controllers.ControladorContrato;
 import principal.controllers.DatosDeTabla;
 import principal.controllers.SuperControlador;
-import principal.entities.Estudiante;
+import principal.entities.Contrato;
 
 
 public class PanelTabla extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTable tableAlumnos;
+	private JTable tableContratos;
 	private DefaultTableModel dtm = null;
 	private Object datosEnTabla[][] = DatosDeTabla.getDatosDeTabla();
 	private String titulosEnTabla[] = DatosDeTabla.getTitulosColumnas();
@@ -49,19 +49,19 @@ public class PanelTabla extends JPanel {
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		add(splitPane, BorderLayout.CENTER);
 		this.dtm = getDefaultTableModelNoEditable();
-		tableAlumnos = new JTable(dtm);
-		JScrollPane scrollPane = new JScrollPane(tableAlumnos);
+		tableContratos = new JTable(dtm);
+		JScrollPane scrollPane = new JScrollPane(tableContratos);
 		
-		tableAlumnos.addMouseListener(new MouseAdapter() {
+		tableContratos.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				super.mouseClicked(e);
-				int indiceFilaSel = tableAlumnos.getSelectedRow();
+				int indiceFilaSel = tableContratos.getSelectedRow();
 				Object value = datosEnTabla[indiceFilaSel][0];
 
-				Estudiante estSeleccionado = ControladorEstudiantes.getInstance().obtenerEstudiantePorId((Integer)value);
-				ControladorEstudiantes.getInstance().mostrarEstudiante(estSeleccionado);
-				PanelEStudiante panelEstudiante = new PanelEStudiante(estSeleccionado);
+				Contrato estSeleccionado = ControladorContrato.getInstance().obtenerEstudiantePorId((Integer)value);
+				ControladorContrato.getInstance().mostrarEstudiante(estSeleccionado);
+				GestionContrato panelEstudiante = new GestionContrato(estSeleccionado);
 				JScrollPane scrollPane2 = new JScrollPane(panelEstudiante);
 				splitPane.setRightComponent(scrollPane2);
 				splitPane.setResizeWeight(0.2);
@@ -76,23 +76,19 @@ public class PanelTabla extends JPanel {
 		
 	}
 	
-	public void actualizarTabla(Estudiante e) {
+	public void actualizarTabla(Contrato e) {
 	    // 1. Actualizar los datos en la matriz datosEnTabla
 	    datosEnTabla = DatosDeTabla.getDatosDeTabla(); // Suponiendo que obtienes los nuevos datos de alguna fuente
-	    int f = tableAlumnos.getSelectedRow();
+	    int f = tableContratos.getSelectedRow();
 	    
 	    
 	    this.datosEnTabla[f][0] = e.getId();
-	    this.datosEnTabla[f][1] = e.getNombre();
-	    this.datosEnTabla[f][2] = e.getApellido_1();
-	    this.datosEnTabla[f][3] = e.getApellido_2();
-	    this.datosEnTabla[f][4] = e.getDni();
-	    this.datosEnTabla[f][5] = e.getDireccion();
-	    this.datosEnTabla[f][6] = e.getMail();
-	    this.datosEnTabla[f][7] = e.getTelefono();
-	    this.datosEnTabla[f][8] = e.getIdSexo();
-	    this.datosEnTabla[f][9] = e.getImagen();
-	    this.datosEnTabla[f][10] = e.getColorFavorito();
+	    this.datosEnTabla[f][1] = e.getDescripcion();
+	    this.datosEnTabla[f][2] = e.getFechaFirma();
+	    this.datosEnTabla[f][3] = e.getSaldo();
+	    this.datosEnTabla[f][4] = e.getLimite();
+	    this.datosEnTabla[f][5] = e.getIdUsuario();
+	
 	    
 
 	    // 3. Notificar a la tabla que los datos han sido actualizados
