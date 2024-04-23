@@ -14,6 +14,7 @@ import java.awt.Toolkit;
 import javax.swing.JTextField;
 
 import principal.controllers.ControladorContrato;
+import principal.controllers.ControladorUsuario;
 import principal.entities.Contrato;
 import principal.entities.Usuario;
 
@@ -242,8 +243,13 @@ public class GestionContrato extends JPanel {
 		gbc_btnNewButton.gridx = 0;
 		gbc_btnNewButton.gridy = 10;
 		add(btnNewButton, gbc_btnNewButton);
+
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				guardar();
+			}
+		});
 		cargarPrimero();
-//		cargarPProveedores();
 
 	}
 
@@ -359,6 +365,20 @@ public class GestionContrato extends JPanel {
 
 	}
 
+	private void guardar() {
+
+		Usuario p = ControladorUsuario.findArtById(Integer.parseInt(this.jtfId.getText()));
+
+		if (isFechaValida()) {
+
+			ControladorUsuario.update(p);
+			JOptionPane.showMessageDialog(null, "Registro modificado con éxito");
+		} else {
+			JOptionPane.showMessageDialog(null, "No se ha podido guardar, la fecha no es válida");
+		}
+
+	}
+	
 //	private void cargarPProveedores() {
 //		List<Proveedor> l = ControladorProveedores.findAll();
 //		for (Proveedor proveedor : l) {

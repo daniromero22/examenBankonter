@@ -4,6 +4,7 @@
 		transaction-type="RESOURCE_LOCAL">
 		<class>principal.entities.Contrato</class>
 		<class>principal.entities.Usuario</class>
+		<class>principal.entities.TipoContrato</class>
 		<class>principal.entities.Entidad</class>
 		
 
